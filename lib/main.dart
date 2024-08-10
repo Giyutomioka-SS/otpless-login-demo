@@ -31,7 +31,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _otplessFlutterPlugin = Otpless();
-  final String appId = "GYAZZUKY316G1H8ZOGFC"; // Replace with your actual App ID
+  final String appId = "gyazzuky316g1h8zogfc";
+  String otplessResponse = "";
 
   @override
   void initState() {
@@ -47,22 +48,39 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     _otplessFlutterPlugin.openLoginPage((result) {
-      var message = "";
-      if (result['data'] != null) {
-        final token = result['response']['token'];
-        message = "token: $token";
-      } else {
-        message = result['errorMessage'];
-      }
-      // You can handle the message as needed
-      print(message);
+      setState(() {
+        if (result['data'] != null) {
+          final token = result['response']['token'];
+          otplessResponse = "Token: $token";
+        } else {
+          otplessResponse = result['errorMessage'] ?? 'Unknown error';
+        }
+      });
     }, arg);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text('Login Response'),
+      ),
       backgroundColor: Colors.white,
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Center(
+            child: Text(
+              'Successfully Logged In',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="otpless"
-                    android:scheme= "otpless.GYAZZUKY316G1H8ZOGFC"/>
+                    android:scheme= "otpless.gyazzuky316g1h8zogfc"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
